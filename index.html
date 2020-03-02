@@ -1,0 +1,308 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>LP-WaveNet: Linear Prediction-based WaveNet Speech Synthesis
+	</title>
+</head>
+<body>
+
+<article>
+    <header>
+        <h1>LP-WaveNet: Linear Prediction-based WaveNet Speech Synthesis</h1>
+    </header>
+</article>
+<hr>
+
+<div><h3><b>Paper</b> </h3>
+<div> <blockquote> Submitted to EUSIPCO 2020 </blockquote> </div>
+<div><h3><b>Authors</b> </h3>
+<blockquote> <div>Min-Jae Hwang, Frank Soong, Eunwoo Song, Xi Wang, Hyeonjoo Kang and Hong-Goo Kang</div> </blockquote> 
+<div><h3><b>Abstract</b> </h3>
+<blockquote> 
+<div> We propose a linear prediction (LP)-based waveform generation method via WaveNet vocoding framework. </div>
+<div> A WaveNet-based neural vocoder, which uses acoustic parameters as a conditional input of WaveNet, has significantly improved the quality of statistical parametric speech synthesis system.</div>
+<div> However, it is still challenging to effectively train the neural vocoder when the target database contains massive amount of acoustical information such as prosody, style or expressiveness.</div>
+<div> As a solution, the approaches that only generate the vocal source component by a neural vocoder have been proposed.</div>
+<div> However, they tend to generate synthetic noise because the vocal source component is independently handled without considering the entire speech synthesis process; where it is inevitable to come up with a mismatch between vocal source and vocal tract filter.</div>
+<div> To address this problem, we propose an LP-WaveNet that structurally models the vocal source in the speech training and inference processes.</div>
+<div> The experimental results verify that the proposed system outperforms the conventional WaveNet vocoders both objectively and subjectively.	</div>
+</blockquote> 
+</div>
+<br/>
+
+<hr>
+<style type="text/css">
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+.tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
+</style>
+
+<h3 id="samples">Samples</h3>
+
+<blockquote> 
+<h3 style="text-align:left">"더구나, 국산 제품답지 않은 디자인과 색감이 눈에 띈다."</h3>
+<table class="tg">
+  <tr>
+    <th class="tg-lboi"></th>
+    <th class="tg-lboi">Recorded</th>
+    <th class="tg-lboi">ITFTE</th>
+    <th class="tg-lboi">mu-law WaveNet</th>
+    <th class="tg-lboi">ExcitNet</th>
+	<th class="tg-lboi">LP-WaveNet (proposed)</th>
+  </tr>
+  <tr>
+    <td class="tg-lboi">Analysis / Synthesis</td>
+    <td class="tg-lboi" rowspan="2">
+		<audio controls style="width: 140px;">
+			<source src="wav/ref/fkhy000132.wav">
+		</audio>
+	</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/anasyn/itfte/fkhy000132.wav">
+		</audio>
+	</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/anasyn/spch/fkhy000132.wav">
+		</audio>
+	</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/anasyn/exc/fkhy000132.wav">
+		</audio>
+	</td>
+	<td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/anasyn/lpnet/fkhy000132.wav">
+		</audio>
+	</td>
+  </tr>
+  <tr>
+    <td class="tg-lboi">Text-to-Speech</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/spss/itfte/fkhy000132.wav">
+		</audio>
+	</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/spss/spch/fkhy000132.wav">
+		</audio>
+	</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/spss/exc/fkhy000132.wav">
+		</audio>
+	</td>
+	<td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/spss/lpnet/fkhy000132.wav">
+		</audio>
+	</td>
+  </tr>
+</table>
+
+<h3> <br/></h3>
+<h3 style="text-align:left">"잔디밭에서 진행한 구조조정 토론회는, 잔디를 훼손하는 불법 행사로 탄압 받았다."</h3>
+<table class="tg">
+  <tr>
+    <th class="tg-lboi"></th>
+    <th class="tg-lboi">Recorded</th>
+    <th class="tg-lboi">ITFTE</th>
+    <th class="tg-lboi">mu-law WaveNet</th>
+    <th class="tg-lboi">ExcitNet</th>
+	<th class="tg-lboi">LP-WaveNet (proposed)</th>
+  </tr>
+  <tr>
+    <td class="tg-lboi">Analysis / Synthesis</td>
+    <td class="tg-lboi" rowspan="2">
+		<audio controls style="width: 140px;">
+			<source src="wav/ref/fkhy000198.wav">
+		</audio>
+	</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/anasyn/itfte/fkhy000198.wav">
+		</audio>
+	</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/anasyn/spch/fkhy000198.wav">
+		</audio>
+	</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/anasyn/exc/fkhy000198.wav">
+		</audio>
+	</td>
+	<td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/anasyn/lpnet/fkhy000198.wav">
+		</audio>
+	</td>
+  </tr>
+  <tr>
+    <td class="tg-lboi">Text-to-Speech</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/spss/itfte/fkhy000198.wav">
+		</audio>
+	</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/spss/spch/fkhy000198.wav">
+		</audio>
+	</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/spss/exc/fkhy000198.wav">
+		</audio>
+	</td>
+	<td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/spss/lpnet/fkhy000198.wav">
+		</audio>
+	</td>
+  </tr>
+</table>
+
+<h3> <br/></h3>
+<h3 style="text-align:left">"엘리베이터가 수리 중입니다."</h3>
+<table class="tg">
+  <tr>
+    <th class="tg-lboi"></th>
+    <th class="tg-lboi">Recorded</th>
+    <th class="tg-lboi">ITFTE</th>
+    <th class="tg-lboi">mu-law WaveNet</th>
+    <th class="tg-lboi">ExcitNet</th>
+	<th class="tg-lboi">LP-WaveNet (proposed)</th>
+  </tr>
+  <tr>
+    <td class="tg-lboi">Analysis / Synthesis</td>
+    <td class="tg-lboi" rowspan="2">
+		<audio controls style="width: 140px;">
+			<source src="wav/ref/fkhy000264.wav">
+		</audio>
+	</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/anasyn/itfte/fkhy000264.wav">
+		</audio>
+	</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/anasyn/spch/fkhy000264.wav">
+		</audio>
+	</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/anasyn/exc/fkhy000264.wav">
+		</audio>
+	</td>
+	<td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/anasyn/lpnet/fkhy000264.wav">
+		</audio>
+	</td>
+  </tr>
+  <tr>
+    <td class="tg-lboi">Text-to-Speech</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/spss/itfte/fkhy000264.wav">
+		</audio>
+	</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/spss/spch/fkhy000264.wav">
+		</audio>
+	</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/spss/exc/fkhy000264.wav">
+		</audio>
+	</td>
+	<td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/spss/lpnet/fkhy000264.wav">
+		</audio>
+	</td>
+  </tr>
+</table>
+
+
+<h3> <br/></h3>
+<h3 style="text-align:left">"택시를 잡을 수 있을지 모르겠어요."</h3>
+<table class="tg">
+  <tr>
+    <th class="tg-lboi"></th>
+    <th class="tg-lboi">Recorded</th>
+    <th class="tg-lboi">ITFTE</th>
+    <th class="tg-lboi">mu-law WaveNet</th>
+    <th class="tg-lboi">ExcitNet</th>
+	<th class="tg-lboi">LP-WaveNet (proposed)</th>
+  </tr>
+  <tr>
+    <td class="tg-lboi">Analysis / Synthesis</td>
+    <td class="tg-lboi" rowspan="2">
+		<audio controls style="width: 140px;">
+			<source src="wav/ref/fkhy000297.wav">
+		</audio>
+	</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/anasyn/itfte/fkhy000297.wav">
+		</audio>
+	</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/anasyn/spch/fkhy000297.wav">
+		</audio>
+	</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/anasyn/exc/fkhy000297.wav">
+		</audio>
+	</td>
+	<td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/anasyn/lpnet/fkhy000297.wav">
+		</audio>
+	</td>
+  </tr>
+  <tr>
+    <td class="tg-lboi">Text-to-Speech</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/spss/itfte/fkhy000297.wav">
+		</audio>
+	</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/spss/spch/fkhy000297.wav">
+		</audio>
+	</td>
+    <td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/spss/exc/fkhy000297.wav">
+		</audio>
+	</td>
+	<td class="tg-lboi">
+		<audio controls style="width: 140px;">
+			<source src="wav/spss/lpnet/fkhy000297.wav">
+		</audio>
+	</td>
+  </tr>
+</table>
+
+</blockquote> 
+
+<h3> <br/></h3>
+<hr>
+
+<h3 id="acknowledgements">Acknowledgements</h3>
+
+<p><b>Work performed with nVoice, Clova Voice, Naver Corp.</b></p>
